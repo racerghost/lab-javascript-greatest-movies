@@ -106,15 +106,10 @@ let orderAlphabetically=(movies)=>{
 
   let top20Array=[];
   let newMoviesArray=[...movies];
-  console.log(movies);
-  console.log(newMoviesArray);
   newMoviesArray.sort((a,b)=>(a.title.localeCompare(b.title)))
   for (let i=0;i<newMoviesArray.length;i++){
    top20Array.push(newMoviesArray[i].title);
   }
-  //  top20Array=newMoviesArray.slice(0,20);
- 
-  console.log(top20Array);
 
   return top20Array.slice(0,20);
   }
@@ -122,7 +117,50 @@ let orderAlphabetically=(movies)=>{
 
 
 
-  console.log(orderAlphabetically(movies)); 
+  //orderAlphabetically(movies); 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+
+
+function turnHoursToMinutes(pelis){
+  let pelisInMins = pelis.map((peli) => peli);
+  if (pelisInMins.length===0) {
+    return []
+  };
+  let hoursToMinutes=(hours)=>{return parsetint(hours*60);}
+
+  pelisMinuts=(peli)=>{
+    let indexOfH=0;
+    let indexOfMin=0;
+    indexOfH = peli.duration.search('h');
+    indexOfMin = peli.duration.search('min');
+
+    if (indexOfMin != -1){ // indexOfH 
+        return (hoursToMinutes(parseInt(peli.duration.substr(0,indexOfH)),10)+parseInt(peli.duration.substr(indexOfH+2,indexOfMin-indexOfH-2)));
+    } else if (indexOfH != -1){
+        return (parseInt(peli.duration.substr(indexOfH+2,indexOfMin-indexOfH-2)));
+    }
+    else {
+        return (hoursToMinutes(parseInt(peli.duration.substr(0,indexOfH)),10));
+    }
+  }
+  pelisInMins.forEach(peli => {peli.duration = pelisMinuts(peli)});
+  return pelisInMins; 
+}
+
+console.log(turnHoursToMinutes(movies));
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function turnHoursToMinutes(pelis){
+  let pelisInMins = pelis.map((peli) => peli);
+  if (pelisInMins.length===0) {
+    return []
+  };
+  let hoursToMinutes=(hours)=>{
+    return hours*60
+  }
+  pelisInMins.map((movie) => {
+
+  })
+}
